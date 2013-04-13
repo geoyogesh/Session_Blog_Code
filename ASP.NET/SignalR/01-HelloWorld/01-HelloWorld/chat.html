@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Simple Chat</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.signalR-1.0.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+     
+    <!--..\packages\Microsoft.AspNet.SignalR.Utils.1.0.1\tools\signalr.exe ghb /url:http://localhost:11675/-->
+    
+    <script type="text/javascript">
+        var chat;
+
+        $(function() {
+            $.connection.hub.logging = true;
+
+
+            chat = $.connection.chat;
+            chat.client.newMessage = onNewMessage;
+            
+
+            $('#join').click(onJoin);
+            $('#send').click(onSend);
+            $('#sendPrivate').click(onSendPrivate);
+
+            //$.connection.hub.start();
+            $.connection.hub.start({ transport: 'longPolling' });
+        });
+        
+        function onNewMessage(message) {
+            $('#messages').append('<li>' + message + '</li>');
+        };
+        
+        function onJoin() {
+
+        };
+        
+        function onSend() {
+            chat.server.sendMessage($('#message').val());
+        };
+        
+        function onSendPrivate() {
+
+        };
+
+        $.connection.hub.error(function(err) {
+            alert("an error occured" + err);
+        });
+
+    </script>
+
+</head>
+<body>
+
+    
+    Message: <input id="message" type="text" /><input id="send" type="button" value="Send" /><br/>
+    <div id="messages"></div>
+
+</body>
+</html>

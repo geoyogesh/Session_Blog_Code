@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Monitor</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.signalR-1.0.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    
+    <style>
+        body {
+            background-color: lightblue;
+        }
+    </style>
+     
+    
+    <script type="text/javascript">
+        var chat;
+
+        $(function () {
+            chat = $.connection.monitor;
+            //$.connection.hub.start();
+            $.connection.hub.start({ transport: 'longPolling' });
+        });
+        
+        function onNewMessage() {
+
+        };
+        
+        function onJoin() {
+
+        };
+        
+        function onSend() {
+
+        };
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
